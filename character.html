@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./character.css" />
+    </head>
+    <body>
+        <div class="background"></div>
+
+        <div class="member">
+            <div class="char">
+                <div class="c01">
+                    <img src="./member/blue.jpg" />
+                    <span style="background-color: aqua"> 山田涼 </span>
+                    <div class="cinfo">
+                        <h1>山田涼</h1>
+                        <h2>Bass <br> CV . 水野朔 </h2>
+                        <br />
+                        <p>
+                            冷靜、孤獨的高中二年級學生。<br />
+                            團結樂隊的貝斯手。虹夏的好朋友。<br />
+                            她的愛好和興趣不被這個世界理解，當人們稱他為怪人時，他很會高興。<br />
+                            她生活在一個富裕的家庭，但由於她在樂器上的瘋狂消費，總是缺錢。<br />
+                            他有時會吃野草來掩蓋他的飢餓感。<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="char">
+                <div class="c02">
+                    <img src="./member/pink.jpg" />
+                    <span style="background-color: rgb(225, 0, 255)">
+                        後藤一里
+                    </span>
+                    <div class="cinfo">
+                        <h1>後藤一里</h1>
+                        <h2> Guitar <br> CV . 青山吉能</h2>
+                        <br />
+                        <p>
+                            極度羞澀和憂鬱的高中生一年級生。<br />
+                            樂隊中的首席吉她手。<br />
+                            開始彈吉她是因為她渴望加入樂團閃閃發光，就算她非常害羞也還是如此。<br />
+                            她是一個吉她高手，但她沒辦法在樂隊中或在別人面前很好地表現出來。<br />
+                            口頭禪是在談話開始時加上'啊'<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="char">
+                <div class="c03">
+                    <img src="./member/red.jpg" />
+                    <span style="background-color: red"> 喜多郁代 </span>
+                    <div class="cinfo">
+                        <h1>喜多郁代</h1>
+                        <h2>Guitar & vocal <br>CV . 長谷川育美 </h2>
+                        <br />
+                        <p>
+                            聰明且受人喜愛的高中一年級生。<br />
+                            樂隊中的吉他手和主唱。<br />
+                            她是一個開朗的人，喜歡認識別人，即使是第一次見面，也不害怕微笑和交談。<br />
+                            她非常憧憬涼，甚至有時會憧憬的太超過。<br />
+                            經常拍照上傳Instagram。<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="char">
+                <div class="c04">
+                    <img src="./member/yellow.jpg" />
+                    <span style="background-color: yellow"> 伊地知虹夏 </span>
+                    <div class="cinfo">
+                        <h1>伊地知虹夏</h1>
+                        <h2>Drums <br> CV . 鈴代紗弓</h2>
+                        <br />
+                        <p>
+                            精力充沛、性格開朗的高中二年級學生。<br />
+                            結束樂隊的鼓手。<br />
+                            她是樂隊的組織者，負責照顧加入樂隊的成員。<br />
+                            她有一個姐姐星歌，她是Live音樂俱樂部「STARRY」的經理，對Live音樂俱樂部有特殊的感情。<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">結束樂團</a></li>
+                <li><a class="active" href="character.html">成員列表</a></li>
+                <li><a href="About.html">官網連結</a></li>
+                <li><a href="play.html">音樂播放器</a></li>
+            </ul>
+        </nav>
+        <div class="playbut">
+            <input class="pause" type="button" value="音樂播放/暫停" />
+        </div>
+    </body>
+</html>
+<script
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"
+></script>
+<script>
+    let dones = document.querySelectorAll('.contbox');
+    let audiodone;
+    let audioback;
+    let pause = document.querySelector('.pause');
+    let maber = document.querySelectorAll('.char');
+    let PlayPause = false;
+    function playback() {
+        audioback.src = 'F2op2.mp3';
+        audioback.volume = 0.3;
+    }
+    window.onload = playback;
+    function playaudio() {
+        audiodone = new Audio('done.mp3');
+        audiodone.play();
+    }
+    dones.forEach(function (done) {
+        done.addEventListener('click', playaudio);
+    });
+    function PlayAndPause() {
+        if (audioback.paused) {
+            audioback.play();
+        } else {
+            audioback.pause();
+        }
+    }
+    pause.addEventListener('click', PlayAndPause);
+
+    $('body').click((event) => {
+        $('.char').removeClass('active').removeClass('not prev next');
+    });
+    $('.char').click(function act(event) {
+        event.stopPropagation();
+        $('.char').removeClass('active prev next').addClass('not');
+        $(this).addClass('active').removeClass('not');
+        $(this).append();
+        $(this).prev().addClass('prev').removeClass('not');
+        $(this).next().addClass('next').removeClass('not');
+    });
+</script>

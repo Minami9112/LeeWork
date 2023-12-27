@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="play.css" />
+        <title>10933139 李宗翰</title>
+    </head>
+    <body>
+        <div class="background"></div>
+        <section>
+            <div class="album-info">
+                <div class="album-art">
+                    <img src="band.jpg" />
+                    <div class="actions">
+                        <div class="play">Play</div>
+                    </div>
+                </div>
+                <div class="album-details">
+                    <h2><img src="band.jpg" />結束バンド</h2>
+                    <h1>結束バンド</h1>
+                    <span> <span>結束バンド</span><span> 2022</span></span>
+                </div>
+            </div>
+            <div class="album-tracks">
+                <ol>
+                    <li><span>青春コンプレックス</span><span>03:23</span></li>
+                    <li><span>ひとりぼっち東京</span><span>03:52</span></li>
+                    <li><span>Distortion!!</span><span>03:23</span></li>
+                    <li><span>ひみつ基地</span><span>03:52</span></li>
+                    <li>
+                        <span>ギターと孤独と蒼い惑星</span><span>03:48</span>
+                    </li>
+                    <li><span>ラブソングが歌えない</span><span>03:08</span></li>
+                    <li><span>あのバンド</span><span>03:33</span></li>
+                    <li><span>カラカラ</span><span>04:25</span></li>
+                    <li><span>小さな海</span><span>03:43</span></li>
+                    <li><span>なにが悪い</span><span>03:47</span></li>
+                    <li><span>忘れてやらない</span><span>03:43</span></li>
+                    <li><span>星座になれたら</span><span>04:18</span></li>
+                    <li><span>フラッシュバッカー</span><span>04:35</span></li>
+                    <li>
+                        <span>転がる岩、君に朝が降る</span><span>04:31</span>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <div class="control">
+            <span class="sname"></span>
+            <span class="currentTime"></span>/
+            <span class="tlong"></span>
+            <span
+                ><ion-icon class="vol" name="volume-medium-outline"></ion-icon
+            ></span>
+            <span
+                ><input
+                    id="volumeSlider"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.3"
+            /></span>
+
+            <span class="prvebut but"
+                ><ion-icon name="play-back-outline"></ion-icon
+            ></span>
+            <span class="stopbut but"></span>
+            <span class="nextbut but"
+                ><ion-icon name="play-forward-outline"></ion-icon
+            ></span>
+        </div>
+        <!-- 導覽列設計 -->
+        <nav>
+            <ul>
+                <li><a href="index.html">結束樂團</a></li>
+                <li><a href="character.html">成員列表</a></li>
+                <li><a href="About.html">官網連結</a></li>
+                <li><a class="active" href="play.html">音樂播放器</a></li>
+            </ul>
+        </nav>
+    </body>
+</html>
+<script
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"
+></script>
+<script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+></script>
+<script>
+    let PlayPause = false;
+    const playimg = '<ion-icon name="play-outline"></ion-icon>';
+    const pauseimg = '<ion-icon name="pause-outline"></ion-icon>';
+    let crlt = $('.control');
+    let stopbut = $('.stopbut');
+    let audioplay = new Audio('');
+    let playlog = '01.mp3';
+    let playindexlog = 0;
+    let volume = 0.3;
+    let playlist = [
+        '01.mp3',
+        '02.mp3',
+        '03.mp3',
+        '04.mp3',
+        '05.mp3',
+        '06.mp3',
+        '07.mp3',
+        '08.mp3',
+        '09.mp3',
+        '10.mp3',
+        '11.mp3',
+        '12.mp3',
+        '13.mp3',
+        '14.mp3',
+    ];
+    let songname = [
+        '青春コンプレックス',
+        'ひとりぼっち東京',
+        'Distortion!!',
+        'ひみつ基地',
+        'ギターと孤独と蒼い惑星',
+        'ラブソングが歌えない',
+        'あのバンド',
+        'カラカラ',
+        '小さな海',
+        'なにが悪い',
+        '忘れてやらない',
+        '星座になれたら',
+        'フラッシュバッカー',
+        '転がる岩、君に朝が降る',
+    ];
+    stopbut.empty();
+    stopbut.append(playimg);
+    audioplay.src = playlog;
+    $('#volumeSlider').attr('value', volume);
+    audioplay.volume = volume;
+    $('#volumeSlider').change(function () {
+        volume = $(this).val();
+        audioplay.volume = volume;
+        console.log(volume);
+    });
+    crlt.children('.sname').append('青春コンプレックス');
+    crlt.children('.tlong').append('3:23');
+    $('.stopbut').click(function () {
+        if (audioplay.paused) {
+            audioplay.play();
+            stopbut.empty();
+            stopbut.append(pauseimg);
+        } else {
+            audioplay.pause();
+            stopbut.empty();
+            stopbut.append(playimg);
+        }
+    });
+    $('.nextbut').click(function () {
+        playindexlog++;
+        if (playindexlog > 13) {
+            playindexlog = 0;
+        }
+        playlog = playlist[playindexlog];
+        audioplay.src = playlog;
+        audioplay.play();
+        crlt.children('.sname').empty();
+
+        crlt.children('.sname').append(songname[playindexlog]);
+    });
+    $('.prvebut').click(function () {
+        playindexlog--;
+        if (playindexlog < 0) {
+            playindexlog = 13;
+        }
+        playlog = playlist[playindexlog];
+        audioplay.src = playlog;
+        audioplay.play();
+        crlt.children('.sname').empty();
+
+        crlt.children('.sname').append(songname[playindexlog]);
+    });
+    audioplay.addEventListener(
+        'timeupdate',
+        function () {
+            let timeDisplay;
+            timeDisplay = Math.floor(audioplay.currentTime);
+            let nowTime;
+            nowTime =
+                String(('00' + Math.floor(timeDisplay / 60)).substr(-2)) +
+                ':' +
+                String(('00' + (timeDisplay % 60)).substr(-2));
+            crlt.children('.currentTime').empty();
+            crlt.children('.currentTime').append(nowTime);
+        },
+        false
+    );
+    $('ol li').click(function () {
+        crlt.children('.sname').empty();
+        crlt.children('.tlong').empty();
+        crlt.children('.sname').append(
+            $(this).children('li>span:nth-child(1)').text()
+        );
+        crlt.children('.tlong').append(
+            $(this).children('li>span:nth-child(2)').text()
+        );
+        $('.stopbut').empty();
+        $('.stopbut').append(pauseimg);
+        playlog = playlist[$(this).index()];
+        playindexlog = $(this).index();
+        audioplay.src = playlog;
+        audioplay.load();
+        audioplay.play();
+    });
+</script>

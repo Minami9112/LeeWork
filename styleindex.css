@@ -1,0 +1,387 @@
+/* 字的顏色 */
+:root{
+    --white:rgb(255, 255, 255)
+}
+p,h1,h2 {
+    color:var(--white);
+    font-weight: 900;
+    margin-left: 5px;
+    font-size: 1.3em;
+}
+.first {
+    width: calc(100% - 40px);
+    position: absolute;
+    overflow: hidden;
+    background-size: cover;
+    animation-name: image;
+    animation-duration: 1s;
+}
+.link a{
+    
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
+    font-size: 2em;
+}
+.thumb{
+    position: relative;
+    animation-name: frame;
+    animation-duration: 0.5s;
+}
+.thumb img{
+    width: 100%;
+    cursor: pointer;
+}
+.show{
+    
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.713);
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    
+}
+.show.active {
+    display: block;
+    opacity: 1;
+    animation-name: showani;
+    animation-duration: 0.3s;
+}
+@keyframes showani {
+    0%{
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+.show iframe{
+    z-index: index 0;
+    position: fixed;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+}
+.close{
+    font-size: 5em;
+    width: 80px;
+    height: 80px;
+    top: 90px;
+    right:15%;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+    transform: rotate(90deg);
+    
+}
+.close:hover{
+    transform: rotate(0deg);
+}
+.show div{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.show>div>h1{
+    border-color: rgba(255, 255, 255, 0.656);
+    border-radius: 10px;
+    border-width:5px;
+    border-style: solid;
+    margin: 0px;
+}
+.thumb::after  {
+    background: url("./play.png") no-repeat 0 0/100%;
+    content: "";
+    height: min(12.5vw, 60px);
+    transform: translate(-50%, -50%);
+    width: min(12.5vw, 60px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+@keyframes image {
+    0% {
+        transform: translateY(80%) rotate(360deg);
+    }
+    50% {
+        transform: translateY(0%) rotate(0deg);
+    }
+}
+/* 背景拉 */
+body {
+    background-color: #000;
+    padding: 0px;
+    margin: 0px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+.background{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    animation-name: backani;
+    animation-duration: 1s;
+    top: 0;
+    left: 0;
+    background: url('./ph_bg.png') no-repeat 50% 50%/cover, #000;
+    height: 100%;
+    width: 100%;
+}
+@keyframes backani {
+    0%{
+        opacity: 0;
+        transform: rotate(180deg) translateY(100%) scale(20%);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        transform: rotate(0deg) translateY(0%) scale(100%);;
+    }
+}
+/* / 到這裡 */
+/* 導覽列CSS */
+nav > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+nav > ul > li {
+    float: left;
+}
+/* 導覽列字體CSS */
+li a {
+    font-weight: 900;
+    transition: 0.5s;
+    background-color: #000;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+.rightbar > ul {
+    right: 0;
+    padding: 0px;
+    list-style-type: none;
+}
+.rightbar li a {
+    font-weight: 900;
+    text-decoration: none;
+    border-bottom: #555 solid 1px;
+}
+.rightbar li a:hover {
+    background-color: #555;
+    color: white;
+    padding: 30px 30px;
+}
+a.active {
+    background-color: aqua;
+    color: #000;
+}
+.contbox:nth-child(1).active a {
+    background-color: aqua;
+    color: #000;
+}
+.contbox:nth-child(2).active a {
+    background-color: red;
+    color: #000;
+}
+.contbox:nth-child(3).active a {
+    background-color: yellow;
+    color: #000;
+}
+.contbox:nth-child(4).active a {
+    background-color: rgb(225, 0, 255);
+    color: #000;
+}
+.rightbar li.active {
+    background-color: rgba(0, 0, 0, 0);
+}
+.rightbar li:hover {
+    background-color: rgba(0, 0, 0, 0);
+    padding-bottom: 30px;
+}
+/* 選單動畫 */
+nav ul li a:hover {
+    background-color: #555;
+    color: white;
+    padding: 15px 60px;
+}
+nav ul li {
+    transition: 0.3s;
+}
+
+
+nav .active {
+    background-color: aqua;
+    color: #000;
+}
+/* 固定位置使用 */
+.contian {
+    margin-top: 70px;
+    padding: 20px;
+    display: block;
+}
+
+.infos {
+    display: flex;
+    position: fixed;
+    width: 500px;
+    height: 480px;
+    flex-wrap: wrap;
+    margin-top: 70px;
+}
+/* 邊框樣式以及大小設定 */
+.mid {
+    position: relative;
+    left: 360px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-bottom: none;
+    border-top: none;
+    padding: 0px;
+    width: calc(100% - 600px);
+}
+img:hover{
+    transition: 0.3s;
+    transform: scale(110%);
+    z-index:10
+}
+/* 讓右邊的選單能被限制不然會飛走 */
+.contians {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+/* 大頭貼位置部分的邊框設計大小 */
+.info {
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    width: 300px;
+    height: 90px;
+    position: sticky;
+    margin-top: 0;
+    align-items: center;
+}
+.info p{
+    margin: 0px;
+    margin-left: 5px;
+}
+/* 大頭貼大小位置 */
+.infoimg {
+    width: 118%;
+    position: relative;
+    left: -7.5%;
+    top: -7.5%;
+    transition-duration: 0.3s;
+    z-index: 0;
+    transform: scale(100%) translateX(0%);
+}
+.info:hover{
+    transform: scale(120%) translateX(10%) ;
+    transition: 0.3s;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+.infoimg:hover,
+.imgwall:hover {
+    transform: scale(150%) rotate(360deg);
+    transition: 0.3s;
+}
+/* block掉大頭貼的粉邊 */
+.imgwall {
+    transition-duration: 0.3s;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+}
+.imgwall p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* 樣式不設定會飛走 */
+.contbox a {
+    display: block;
+    transition: 0.5s;
+}
+.contbox a:hover {
+    padding: 60px 15px;
+}
+/* 右邊選單位置 */
+.rightbar {
+    min-width: 5rem;
+    position: fixed;
+    right: 0;
+    padding: 0px;
+}
+/* 讓F01-03寫入的地方 邊框 */
+/* iframe {
+    position: relative;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+} */
+/* 偵測當前頁面防走失 讓F01~03能更正確輸入到正確位置 */
+.frame {
+    display: none;
+    animation-name: frame;
+    z-index: index 0;
+    animation-duration: 0.5s;
+}
+.frame.active{
+    z-index: index 0;
+    display: block;
+    scroll-margin-top: 90px;
+}
+@keyframes frame {
+    0%{
+        opacity: 0;
+        transform: translateY(-100px) translateX(-100);
+    }
+    100%{ opacity: 1; transform: translateY(0px) translateX(0);}
+}
+/* 暫停音樂 */
+.pause {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: yellow; /* Green */
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.3s;
+    font-weight: 900;
+}
+.pause:hover {
+    background-color: #000;
+    color: white;
+    padding: 15px 64px;
+}
+
+

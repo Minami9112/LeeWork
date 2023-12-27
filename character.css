@@ -1,0 +1,248 @@
+:root{
+    --pink:rgb(225, 0, 255)
+}
+/* 字的顏色 */
+p,
+a {
+    color: white;
+    font-weight: 900;
+}
+/* 背景 */
+body {
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+.member {
+    position: absolute;
+    animation-name: image;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    overflow: hidden;
+    animation-fill-mode: backwards;
+    top: 0px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes image {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        scroll-margin-top: 90px;
+        transform: translateY(0%);
+    }
+}
+.char {
+    position: relative;
+    top: 90px;
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    height: auto;
+    transition: 0.5s;
+}
+.char * img {
+    transition: 0.5s;
+    transform: translateY(0px);
+    height: auto;
+    max-width: 16vw;
+}
+.char * span {
+    width: auto;
+}
+@keyframes caharanime {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}
+.char span {
+    font-weight: 900;
+    color: #000;
+    transition: 0.5s;
+    display: block;
+    font-size: 2em;
+    opacity: 0;
+}
+.char * img:hover {
+    opacity: 1;
+    animation-fill-mode:forwards;
+    animation-name: caharanime;
+    animation-duration: 0.5s;
+}
+.char * img:hover + span {
+    opacity: 1;
+    transform: translateY(-50px);
+}
+.cinfo{
+    display: none;
+}
+.char.active,.char.next,.char.prev{
+    display: block;
+}
+.char.prev{
+    position:absolute;
+    left: 0;
+}
+.char.active {
+    transition: 0.5s;
+    position:absolute;
+    left:17vw;
+    z-index: 1;
+}
+.char.next {
+    transition: 0.5s;
+    position:absolute;
+    right:0;
+    
+}
+.char.active>*>.cinfo {
+    transition: 0.5s;
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    z-index: 10;
+    WIDTH: 50vw;
+    height: calc(100% - 2em - 11px);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.member .char:nth-child(1) * .cinfo{
+    background-color:aqua;
+    
+}
+.member .char:nth-child(2) * .cinfo{
+    background-color:var(--pink);
+}
+.member .char:nth-child(3) * .cinfo{
+    background-color:red;
+}
+.member .char:nth-child(4) * .cinfo{
+    background-color:yellow;
+}
+.char.not{
+    display: none;
+}
+.cinfo h1{
+    color: #000;
+    padding-top: 10px;
+    width: 50vw;
+    margin: 0px;
+}
+.cinfo h2{
+    color: #000;
+    padding-top: 5px;
+    width: 50vw;
+    margin: 0px;
+}
+.cinfo p {
+    border-top:2px solid rgba(0, 0, 0, 0.8);
+    color: #000;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-weight: 900;
+    font-size: 1.5em;
+    margin: 0px;
+    text-align:start
+}
+/* 背景 */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    animation-name: backani;
+    animation-duration: 1s;
+    top: 0;
+    left: 0;
+    background: url('./ph_bg.png') no-repeat 50% 50% / cover, #000;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes backani {
+    0% {
+        opacity: 0;
+        transform: rotate(180deg) translateY(100%) scale(20%);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(0deg) translateY(0%) scale(100%);
+    }
+}
+
+nav > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+nav > ul > li {
+    float: left;
+}
+a {
+    display: block;
+    padding: 8px;
+    background-color: #000;
+}
+/* 導覽列字體CSS */
+li a {
+    transition: 0.5s;
+    background-color: #000;
+    display: block;
+    color: white;
+    font-weight: 900;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+/* 選單動畫 */
+li a:hover {
+    background-color: #555;
+    color: white;
+    padding: 15px 60px;
+}
+nav .active {
+    background-color: rgb(225, 0, 255);
+    color: #000;
+}
+
+.pause {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: yellow;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 900;
+    font-size: 16px;
+    transition-duration: 0.3s;
+}
+.pause:hover {
+    background-color: #555;
+    color: white;
+    padding: 15px 64px;
+}
